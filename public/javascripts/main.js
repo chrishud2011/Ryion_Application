@@ -149,6 +149,7 @@ function execute(){
     //clear the canvas for subsequent text inputs
     canvas.selectAll("text").remove();
     errorDisplay.innerHTML ="";
+    canvas.selectAll("svg").remove();
 
     //The next few variables hold all dynamic text
     let pipe1Text =  canvas.append("text")
@@ -247,7 +248,6 @@ function loadLiquidFillGauge(elementId, value, width, height, xCoord, yCoord, co
     var locationY = parseInt(gauge.style('height'))/2 - radius;
     var fillPercent = Math.max(config.minValue, Math.min(config.maxValue, value))/config.maxValue;
 
-
     var waveHeightScale;
     if(config.waveHeightScaling){
         waveHeightScale = d3.scale.linear()
@@ -303,6 +303,7 @@ function loadLiquidFillGauge(elementId, value, width, height, xCoord, yCoord, co
         // circle at 100%.
         .range([(fillCircleMargin+fillCircleRadius*2+waveHeight),(fillCircleMargin-waveHeight)])
         .domain([0,1]);
+
     var waveAnimateScale = d3.scale.linear()
         .range([0, waveClipWidth-fillCircleRadius*2]) // Push the clip area one full wave then snap back.
         .domain([0,1]);
