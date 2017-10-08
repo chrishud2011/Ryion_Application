@@ -5,9 +5,12 @@ block content
     .form
       label
         | Rate X:
-        input#xRate(value='16.45', type='number')
+        input#xRate(value='16.45', type='number', min=1)
       label
         | Rate Y:
-        input#yRate(value='18.9', type='number')
+        input#yRate(value='18.9', type='number', min=1)
+      label
+        | Tolerance:
+        input#tolerance(value='.02', type='number', step='.001', min='.002', max='.02')
       button#compute.btn Submit
     #errorDisplay

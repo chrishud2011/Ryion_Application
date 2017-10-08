@@ -25,8 +25,8 @@ const height = 1000;
 * parameter: rate of flow, number
 * Returns: size of smallest allowable pipe
 ***********************************************************/
-pipeCalculator = rate => {
-  let allowable = (1.732 * 12.9 * 200 * rate) / (208 * .02);
+pipeCalculator = (rate, tolerance) => {
+  let allowable = (1.732 * 12.9 * 200 * rate) / (208 * tolerance);
   for (let minimum of pipeSizes) {
     if (allowable<minimum) {
       return minimum;
@@ -59,10 +59,10 @@ valveCalculator = rate => {
 * parameters: rate of flow for x and y pipes, numbers
 * returns: sizes for pipes x, y, and z and valves x and y
 ***********************************************************/
-determineSizes = (rateX, rateY) => {
-  let pipeX = pipeCalculator(rateX);
-  let pipeY = pipeCalculator(rateY);
-  let pipeZ = pipeCalculator(parseFloat(rateX) + parseFloat(rateY));
+determineSizes = (rateX, rateY, tolerance) => {
+  let pipeX = pipeCalculator(rateX, tolerance);
+  let pipeY = pipeCalculator(rateY, tolerance);
+  let pipeZ = pipeCalculator(parseFloat(rateX) + parseFloat(rateY), tolerance);
 
   let valveX = valveCalculator(rateX);
   let valveY = valveCalculator(rateY);
@@ -145,7 +145,8 @@ function execute(){
     //inputs from DOM
     let xInput = document.getElementById('xRate').value;
     let yInput = document.getElementById('yRate').value;
-    let results = determineSizes(xInput, yInput);
+    let tolerance = document.getElementById('tolerance').value;
+    let results = determineSizes(xInput, yInput, tolerance);
 
     //clear the canvas for subsequent text inputs
     canvas.selectAll("text").remove();
