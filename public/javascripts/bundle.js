@@ -27,8 +27,9 @@ const height = 1000;
 * Returns: size of smallest allowable pipe
 ***********************************************************/
 pipeCalculator = rate => {
+  let allowable = (1.732 * 12.9 * 200 * rate) / (208 * .02);
   for (let minimum of pipeSizes) {
-    if (((1.732 * 12.9 * 200 * rate) / (208 * minimum)) <= 0.02) {
+    if (allowable<minimum) {
       return minimum;
     }
   }
