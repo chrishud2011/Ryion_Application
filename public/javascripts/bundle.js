@@ -150,7 +150,7 @@ function execute(){
     let tolerance = document.getElementById('tolerance').value;
 
     //validate inputs:
-    if(xInput <.000000000000000001 || yInput <.000000000000000001 || tolerance <.000000000000000001 || tolerance > .02){
+    if(xInput <.000000000000000001 || yInput <.000000000000000001 || tolerance <.001 || tolerance > .02){
       throw new Error ('Please select positive inputs, with a tolerance in range .001 => .02');
     }
 
