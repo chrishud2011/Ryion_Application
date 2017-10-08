@@ -22,7 +22,7 @@ const height = 1000;
 * single value.
 *
 * requirements: A sorted array of pipe sizes, from smallest to largest.
-* parameter: rate of flow, number
+* parameters: rate of flow (number), tolerance (number)
 * Returns: size of smallest allowable pipe
 ***********************************************************/
 pipeCalculator = (rate, tolerance) => {
@@ -57,7 +57,7 @@ valveCalculator = rate => {
 /**********************************************************
 * Function that returns pipe and valve sizes based on given parameters.
 *
-* parameters: rate of flow for x and y pipes, numbers
+* parameters: rate of flow for x and y pipes and tolerance, numbers
 * returns: sizes for pipes x, y, and z and valves x and y
 ***********************************************************/
 determineSizes = (rateX, rateY, tolerance) => {
