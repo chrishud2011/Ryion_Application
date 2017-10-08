@@ -32,6 +32,7 @@ pipeCalculator = (rate, tolerance) => {
       return minimum;
     }
   }
+  throw new Error ('Please raise tolerance above .001 for high flow rates to accomodate pipe Z.');
 }
 
 /**********************************************************
@@ -146,6 +147,12 @@ function execute(){
     let xInput = document.getElementById('xRate').value;
     let yInput = document.getElementById('yRate').value;
     let tolerance = document.getElementById('tolerance').value;
+
+    //validate inputs:
+    if(xInput <.000000000000000001 || yInput <.000000000000000001 || tolerance <.000000000000000001 || tolerance > .02){
+      throw new Error ('Please select positive inputs, with a tolerance in range .001 => .02');
+    }
+
     let results = determineSizes(xInput, yInput, tolerance);
 
     //clear the canvas for subsequent text inputs
